@@ -125,10 +125,10 @@ export const myComponentStyles = css`
   }
 
   .nav-item-title-group{
-    border-top: 1px solid gray;
+    border-top: 1px solid #DDE1E9;
   }
   .nav-item-title-group:last-child{
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid #DDE1E9;
   }
 
   .nav-item img {
@@ -139,5 +139,37 @@ export const myComponentStyles = css`
 .nav-item:hover img {
   filter: brightness(0) saturate(100%) invert(26%) sepia(88%) saturate(6415%) hue-rotate(274deg) brightness(86%) contrast(106%);
 }
+@media (max-width: 700px) {
+  :host {
+    width: 80px;
+  }
+
+  .logo span {
+    display: none;
+  }
+
+  .nav-item span {
+    display: none;
+  }
+
+  .nav-item {
+   justify-content: center;
+  }
+  .logo {
+   justify-content: center;
+  }
+
+  .sidebarr div{
+    display: none;
+  }
+  .nav-item-children{
+    border-top: 1px solid #DDE1E9;
+  }
+
+  .toggle-button {
+    display: none;
+  }
+}
+
 
 `;

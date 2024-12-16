@@ -18,51 +18,48 @@ import { RouterLink } from 'vue-router'
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Centrar verticalmente */
-  background-color: #f3efff; /* Fondo claro relacionado con #8350E6 */
-  font-family: 'Roboto', sans-serif; /* Fuente moderna */
+  height: 100vh;
+  background-color: #f3efff;
+  font-family: 'Roboto', sans-serif;
   width: 100vw;
 }
 
-/* Navegación */
 .nav {
   display: flex;
-  gap: 1.5rem; /* Espaciado entre los enlaces */
-  background-color: #ffffff; /* Fondo blanco para resaltar */
+  gap: 1.5rem;
+  background-color: #ffffff;
   padding: 1rem 2rem;
-  border-radius: 8px; /* Bordes redondeados */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Enlaces de navegación */
 .nav-link {
-  text-decoration: none; /* Quitar subrayado */
-  color: #8350e6; /* Color principal */
+  text-decoration: none;
+  color: #8350e6;
   font-weight: bold;
   font-size: 1.2rem;
   padding: 0.5rem 1rem;
-  transition: all 0.3s ease; /* Transición para el hover */
+  transition: all 0.3s ease;
   border: 2px solid transparent;
-  border-radius: 4px; /* Bordes redondeados */
+  border-radius: 4px;
 }
 
 /* Hover en los enlaces */
 .nav-link:hover {
-  background-color: #8350e6; /* Fondo principal */
-  color: white; /* Texto blanco */
-  border-color: #8350e6; /* Borde principal */
-  box-shadow: 0px 4px 6px rgba(131, 80, 230, 0.4); /* Sombra suave al hover */
+  background-color: #8350e6;
+  color: white;
+  border-color: #8350e6;
+  box-shadow: 0px 4px 6px rgba(131, 80, 230, 0.4);
 }
 
-/* Responsividad */
 @media (max-width: 768px) {
   .nav {
-    flex-direction: column; /* Colocar enlaces en columna */
+    flex-direction: column;
     gap: 1rem;
   }
 
   .nav-link {
-    font-size: 1rem; /* Ajustar tamaño de fuente */
+    font-size: 1rem;
   }
 }
 </style>

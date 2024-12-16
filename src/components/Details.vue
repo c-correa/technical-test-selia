@@ -1,8 +1,10 @@
 <template>
   <div class="container">
-    <p>{{ message }}</p>
-    <RouterLink class="link-router" to="/">Inicio</RouterLink>
-    <button class="link" @click="redirectRoute">Ir al variante {{ nextVariant }}</button>
+    <section class="content">
+      <p>{{ message }}</p>
+      <RouterLink class="link-router" to="/">Inicio</RouterLink>
+      <button class="link" @click="redirectRoute">Ir al variante {{ nextVariant }}</button>
+    </section>
   </div>
 </template>
 
@@ -10,7 +12,7 @@
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 import { computed } from 'vue'
 defineProps({
-  message: String, // Recibe el mensaje como un prop
+  message: String,
 })
 
 const route = useRoute()
@@ -32,39 +34,33 @@ const redirectRoute = () => {
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: end;
   height: 100vh;
   background-color: #f0f0f0;
-  gap: 20px; /* Espacio entre los elementos */
+  gap: 10px;
 }
 
-/* Estilo del RouterLink */
+.content {
+  padding-right: 10px;
+}
 .link-router {
   font-size: 16px;
   font-weight: bold;
-  color: #007bff;
+  color: black;
   text-decoration: none;
-  padding: 10px 20px;
-  border: 2px solid #007bff;
+  padding: 0px 10px;
   border-radius: 5px;
   transition: all 0.3s ease;
   text-align: center;
   display: inline-block;
 }
 
-.link-router:hover {
-  background-color: #007bff;
-  color: #ffffff;
-}
-
-/* Estilo del botón */
 .link {
-  padding: 10px 20px;
+  padding: 10px 10px;
   font-size: 16px;
   font-weight: bold;
   color: #ffffff;
-  background-color: #007bff;
+  background-color: rgb(131, 80, 230);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -72,6 +68,6 @@ const redirectRoute = () => {
 }
 
 .link:hover {
-  background-color: #0056b3;
+  background-color: rgb(131, 80, 230);
 }
 </style>

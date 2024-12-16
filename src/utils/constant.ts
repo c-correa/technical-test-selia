@@ -19,3 +19,11 @@ export const icons = () => {
     ICON_UP
   }
 }
+
+export type NavigationItem = {
+  hash?: number; // Opcional, ya que no todos los elementos lo tienen
+  path?: string; // Opcional, porque los elementos con children no tienen path
+  name: string; // Nombre del elemento (obligatorio)
+  icon?: string; // Icono opcional
+  children?: NavigationItem[]; // Submenús opcionales, recursivo
+};

@@ -80,7 +80,6 @@ const selectedItemName = computed(() => {
   return matchedItem ? matchedItem.name : 'Ningún item seleccionado'
 })
 
-// Reactividad del mensaje
 const messageDetail = ref(selectedItemName.value)
 
 watch(

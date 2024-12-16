@@ -32,25 +32,25 @@ const { ICON_APPOINTMENTS, ICON_PATIENTS, ICON_LOCK, ICON_EYE } = icons()
 const navigationItems = ref([
   {
     hash: 1,
-    path: '/variant-2/appointments', // Ruta actualizada con el componente en inglés
+    path: '/variant-2/appointments',
     name: 'Citas',
     icon: ICON_APPOINTMENTS,
   },
   {
     hash: 1,
-    path: '/variant-2/patients', // Ruta actualizada con el componente en inglés
+    path: '/variant-2/patients',
     name: 'Pacientes',
     icon: ICON_PATIENTS,
   },
   {
     hash: 2,
-    path: '/variant-2/specialists', // Ruta actualizada con el componente en inglés
+    path: '/variant-2/specialists',
     name: 'Especialistas',
     icon: ICON_LOCK,
   },
   {
     hash: 3,
-    path: '/variant-2/services', // Ruta actualizada con el componente en inglés
+    path: '/variant-2/services',
     name: 'Servicios',
     icon: ICON_EYE,
   },
@@ -59,7 +59,7 @@ const navigationItems = ref([
     children: [
       {
         hash: 4,
-        path: '/variant-2/profile', // Ruta actualizada con el componente en inglés
+        path: '/variant-2/profile',
         name: 'Perfil',
         icon: ICON_EYE,
       },
@@ -70,13 +70,13 @@ const navigationItems = ref([
     children: [
       {
         hash: 5,
-        path: '/variant-2/change-password', // Ruta actualizada con el componente en inglés
+        path: '/variant-2/change-password',
         name: 'Cambiar contraseña',
         icon: ICON_EYE,
       },
       {
         hash: 6,
-        path: '/variant-2/lock-pin', // Ruta actualizada con el componente en inglés
+        path: '/variant-2/lock-pin',
         name: 'Bloqueo de PIN',
         icon: ICON_LOCK,
       },
@@ -86,20 +86,17 @@ const navigationItems = ref([
 
 const route = useRoute()
 
-// Computed para encontrar el nombre del item seleccionado basado en la ruta actual
 const selectedItemName = computed(() => {
   const matchedItem = findMatchingItem(route.path)
   return matchedItem ? matchedItem.name : 'Ningún item seleccionado'
 })
 
-// Función para buscar el item que coincide con el path
 function findMatchingItem(path: string) {
   for (const item of navigationItems.value) {
     if (item.path === path) {
       return item
     }
 
-    // Si el item tiene hijos, buscar en ellos también
     if (item.children) {
       const matchedChild = item.children.find((child) => child.path === path)
       if (matchedChild) {
@@ -109,13 +106,6 @@ function findMatchingItem(path: string) {
   }
   return null
 }
-
-watch(
-  () => route.path,
-  () => {
-    // El computed se encargará de actualizar el valor automáticamente.
-  },
-)
 </script>
 
 <style scoped>

@@ -1,96 +1,96 @@
-import { icons } from '@/utils/constant'
-import { LitElement, html, css } from 'lit'
-import { customElement } from 'lit/decorators.js'
-import { classMap } from 'lit/directives/class-map.js'
-import { myComponentStyles } from './sidebarStyle'
+import { icons, type NavigationItem } from '@/utils/constant';
+import { LitElement, html } from 'lit';
+import { customElement } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
+import { myComponentStyles } from './sidebarStyle';
 
 @customElement('selia-sidebar')
 export class MyElement extends LitElement {
-  static styles = myComponentStyles
-  static properties = {
-    title: { type: String },
-    navigationItems: { type: Array },
-    activeSubmenu: { type: String },
-    openSidebar: { type: Boolean, reflect: true },
-    itemSelected: { type: String },
-  }
+  static styles = myComponentStyles;
+
+  // Campos de clase para manejar los datos
+  public title: string;
+  public navigationItems: Array<any>;
+  public activeSubmenu: string;
+  public openSidebar: boolean;
+  public itemSelected: string;
 
   constructor() {
-    super()
-    this.title = 'Selia'
-    this.navigationItems = []
-    this.activeSubmenu = ''
-    this.openSidebar = true
-    this.itemSelected = '' // Esta propiedad almacenará el ítem seleccionado
-    const params = new URLSearchParams(window.location.search)
-    const drawerState = params.get('drawer')
-    this.openSidebar = drawerState !== 'closed'
+    super();
+    this.title = 'Selia';
+    this.navigationItems = [];
+    this.activeSubmenu = '';
+    this.openSidebar = true;
+    this.itemSelected = '';
+
+    const params = new URLSearchParams(window.location.search);
+    const drawerState = params.get('drawer');
+    this.openSidebar = drawerState !== 'closed';
 
     if (!drawerState) {
-      this.openSidebar = true
-      params.set('drawer', 'open')
-      history.replaceState(null, '', '?' + params.toString())
+      this.openSidebar = true;
+      params.set('drawer', 'open');
+      history.replaceState(null, '', '?' + params.toString());
     }
   }
 
-
-
   connectedCallback() {
-    super.connectedCallback()
-    document.addEventListener('click', this.handleOutsideClick.bind(this))
+    super.connectedCallback();
+    document.addEventListener('click', this.handleOutsideClick.bind(this));
   }
 
   disconnectedCallback() {
-    super.disconnectedCallback()
-    document.removeEventListener('click', this.handleOutsideClick.bind(this))
+    super.disconnectedCallback();
+    document.removeEventListener('click', this.handleOutsideClick.bind(this));
   }
 
   handleOutsideClick(event: MouseEvent) {
-    const eventTarget = event?.target?.classList?.contains('content-variant') as HTMLElement
-
-    if (eventTarget) {
-      this.openSidebar = false
-      this.updateQueryParams()
+    const eventTarget = event.target as HTMLElement;
+    if (eventTarget && eventTarget.classList?.contains('content-variant')) {
+      this.openSidebar = false;
+      this.updateQueryParams();
     }
   }
 
   updateQueryParams() {
-    const params = new URLSearchParams(window.location.search)
+    const params = new URLSearchParams(window.location.search);
     if (this.openSidebar) {
-      params.set('drawer', 'open')
+      params.set('drawer', 'open');
     } else {
-      params.set('drawer', 'closed')
+      params.set('drawer', 'closed');
     }
-    history.replaceState(null, '', '?' + params.toString())
+    history.replaceState(null, '', '?' + params.toString());
   }
 
   toggleSubmenu(name: string) {
-    this.activeSubmenu = this.activeSubmenu === name ? '' : name
+    this.activeSubmenu = this.activeSubmenu === name ? '' : name;
+    this.requestUpdate(); // Solicitamos la actualización
   }
 
   toggleSidebar(event: MouseEvent) {
-    event.stopPropagation() // Detiene que el clic se propague al documento
-    this.openSidebar = !this.openSidebar
-    this.updateQueryParams()
+    event.stopPropagation();
+    this.openSidebar = !this.openSidebar;
+    this.updateQueryParams();
+    this.requestUpdate(); // Solicitamos la actualización
   }
 
   toggleItemSelection(key: number, itemName: string) {
     const selectedItem = this.navigationItems.find(
       (item) =>
         item.name === itemName ||
-        (item.children && item.children.some((child) => child.name === itemName)),
-    )
+        (item.children && item.children.some((child: NavigationItem) => child.name === itemName)),
+    );
 
-    const selectedChild = selectedItem?.children?.find((child) => child.name === itemName) || null
-
-    const path = selectedChild?.path || selectedItem?.path
+    const selectedChild = selectedItem?.children?.find((child: NavigationItem) => child.name === itemName) || null;
+    const path = selectedChild?.path || selectedItem?.path;
 
     if (path) {
-      window.location.href = path
+      window.location.href = path;
     }
 
-    this.itemSelected = this.itemSelected === itemName ? '' : itemName
-    this.emitEvent(key, itemName)
+    this.itemSelected = this.itemSelected === itemName ? '' : itemName;
+    this.emitEvent(key, itemName);
+    this.requestUpdate(); // Solicitamos la actualización
   }
 
   emitEvent(key: number, message: string) {
@@ -98,9 +98,9 @@ export class MyElement extends LitElement {
       detail: { key, message },
       bubbles: true,
       composed: true,
-    })
-    this.dispatchEvent(event)
-    alert(JSON.stringify({ key: event.detail.key, name: event.detail.message }))
+    });
+    this.dispatchEvent(event);
+    alert(JSON.stringify({ key: event.detail.key, name: event.detail.message }));
   }
 
   render() {
@@ -122,7 +122,7 @@ export class MyElement extends LitElement {
           </div>
 
           ${this.navigationItems.map(
-      (item, index) => html`
+      (item: NavigationItem, index: number) => html`
               ${item.children
           ? html`
                     <div class="nav-item-title-group">
@@ -146,7 +146,7 @@ export class MyElement extends LitElement {
           })}
                       >
                         ${item.children.map(
-            (child, index) => html`
+            (child: NavigationItem, index: number) => html`
                             <div class="nav-item-children">
                               <div
                                 class="nav-item"
@@ -172,6 +172,7 @@ export class MyElement extends LitElement {
                   `}
             `,
     )}
+
         </div>
 
         <div class="toggle-button">
@@ -181,4 +182,3 @@ export class MyElement extends LitElement {
     `;
   }
 }
-
