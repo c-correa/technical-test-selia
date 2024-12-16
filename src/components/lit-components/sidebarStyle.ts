@@ -152,37 +152,37 @@ filter: brightness(0) saturate(100%) invert(26%) sepia(88%) saturate(6415%) hue-
 }
 
 @media (max-width: 700px) {
-:host {
-  width: 80px;
-}
+  :host {
+    width: 80px;
+  }
 
-.logo span {
-  display: none;
-}
+  .logo span {
+    display: none;
+  }
 
-.nav-item span {
-  display: none;
-}
+  .nav-item span {
+    display: none;
+  }
 
-.nav-item {
-  justify-content: center;
-}
+  .nav-item {
+    justify-content: center;
+  }
 
-.logo {
-  justify-content: center;
-}
+  .logo {
+    justify-content: center;
+  }
 
-.sidebar-container div {
-  display: none;
-}
+  .sidebar-container .te {
+    display: none;
+  }
 
-.nav-item-children {
-  border-top: 1px solid #DDE1E9;
-}
+  .nav-item-children {
+    border-top: 1px solid #DDE1E9;
+  }
 
-.toggle-button {
-  display: none;
-}
+  .toggle-button {
+    display: none;
+  }
 }
 
 `
