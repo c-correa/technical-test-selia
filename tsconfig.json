@@ -1,5 +1,13 @@
 {
   "files": [],
+  "compilerOptions": {
+    "composite": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "useDefineForClassFields": false,
+    "strict": true
+  },
   "references": [
     {
       "path": "./tsconfig.node.json"
