@@ -1,77 +1,76 @@
-import { icons, type NavigationItem } from '@/utils/constant';
-import { LitElement, html } from 'lit';
-import { customElement } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { myComponentStyles } from './sidebarStyle';
+import { icons, type NavigationItem } from '@/utils/constant'
+import { LitElement, html } from 'lit'
+import { customElement } from 'lit/decorators.js'
+import { classMap } from 'lit/directives/class-map.js'
+import { myComponentStyles } from './sidebarStyle'
 
 @customElement('selia-sidebar')
-export class MyElement extends LitElement {
-  static styles = myComponentStyles;
+export class MySidebar extends LitElement {
+  static styles = myComponentStyles
 
-  // Campos de clase para manejar los datos
-  public title: string;
-  public navigationItems: Array<any>;
-  public activeSubmenu: string;
-  public openSidebar: boolean;
-  public itemSelected: string;
+  public title: string
+  public navigationItems: Array<NavigationItem>
+  public activeSubmenu: string
+  public openSidebar: boolean
+  public itemSelected: string
 
   constructor() {
-    super();
-    this.title = 'Selia';
-    this.navigationItems = [];
-    this.activeSubmenu = '';
-    this.openSidebar = true;
-    this.itemSelected = '';
+    super()
+    this.title = 'Selia'
+    this.navigationItems = []
+    this.activeSubmenu = ''
+    this.openSidebar = true
+    this.itemSelected = ''
 
-    const params = new URLSearchParams(window.location.search);
-    const drawerState = params.get('drawer');
-    this.openSidebar = drawerState !== 'closed';
+    const params = new URLSearchParams(window.location.search)
+    const drawerState = params.get('drawer')
+    this.openSidebar = drawerState !== 'closed'
 
     if (!drawerState) {
-      this.openSidebar = true;
-      params.set('drawer', 'open');
-      history.replaceState(null, '', '?' + params.toString());
+      this.openSidebar = true
+      params.set('drawer', 'open')
+      history.replaceState(null, '', '?' + params.toString())
     }
   }
 
   connectedCallback() {
-    super.connectedCallback();
-    document.addEventListener('click', this.handleOutsideClick.bind(this));
+    super.connectedCallback()
+    document.addEventListener('click', this.handleOutsideClick.bind(this))
   }
 
   disconnectedCallback() {
-    super.disconnectedCallback();
-    document.removeEventListener('click', this.handleOutsideClick.bind(this));
+    super.disconnectedCallback()
+    document.removeEventListener('click', this.handleOutsideClick.bind(this))
   }
 
   handleOutsideClick(event: MouseEvent) {
-    const eventTarget = event.target as HTMLElement;
+    const eventTarget = event.target as HTMLElement
     if (eventTarget && eventTarget.classList?.contains('content-variant')) {
-      this.openSidebar = false;
-      this.updateQueryParams();
+      this.openSidebar = false
+      this.updateQueryParams()
     }
   }
 
   updateQueryParams() {
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(window.location.search)
     if (this.openSidebar) {
-      params.set('drawer', 'open');
+      params.set('drawer', 'open')
     } else {
-      params.set('drawer', 'closed');
+      params.set('drawer', 'closed')
     }
-    history.replaceState(null, '', '?' + params.toString());
+    history.replaceState(null, '', '?' + params.toString())
   }
 
   toggleSubmenu(name: string) {
-    this.activeSubmenu = this.activeSubmenu === name ? '' : name;
-    this.requestUpdate(); // Solicitamos la actualización
+    this.activeSubmenu = this.activeSubmenu === name ? '' : name
+    this.requestUpdate()
   }
 
   toggleSidebar(event: MouseEvent) {
-    event.stopPropagation();
-    this.openSidebar = !this.openSidebar;
-    this.updateQueryParams();
-    this.requestUpdate(); // Solicitamos la actualización
+    event.stopPropagation()
+    this.openSidebar = !this.openSidebar
+    this.updateQueryParams()
+    this.requestUpdate()
   }
 
   toggleItemSelection(key: number, itemName: string) {
@@ -79,18 +78,19 @@ export class MyElement extends LitElement {
       (item) =>
         item.name === itemName ||
         (item.children && item.children.some((child: NavigationItem) => child.name === itemName)),
-    );
+    )
 
-    const selectedChild = selectedItem?.children?.find((child: NavigationItem) => child.name === itemName) || null;
-    const path = selectedChild?.path || selectedItem?.path;
+    const selectedChild =
+      selectedItem?.children?.find((child: NavigationItem) => child.name === itemName) || null
+    const path = selectedChild?.path || selectedItem?.path
 
     if (path) {
-      window.location.href = path;
+      window.location.href = path
     }
 
-    this.itemSelected = this.itemSelected === itemName ? '' : itemName;
-    this.emitEvent(key, itemName);
-    this.requestUpdate(); // Solicitamos la actualización
+    this.itemSelected = this.itemSelected === itemName ? '' : itemName
+    this.emitEvent(key, itemName)
+    this.requestUpdate() // Solicitamos la actualización
   }
 
   emitEvent(key: number, message: string) {
@@ -98,18 +98,18 @@ export class MyElement extends LitElement {
       detail: { key, message },
       bubbles: true,
       composed: true,
-    });
-    this.dispatchEvent(event);
-    alert(JSON.stringify({ key: event.detail.key, name: event.detail.message }));
+    })
+    this.dispatchEvent(event)
+    alert(JSON.stringify({ key: event.detail.key, name: event.detail.message }))
   }
 
   render() {
-    const { LOGO_SELIA, ICON_UP, ICON_DOWN } = icons();
+    const { LOGO_SELIA, ICON_UP, ICON_DOWN } = icons()
 
     if (!this.openSidebar) {
-      this.setAttribute('closed', '');
+      this.setAttribute('closed', '')
     } else {
-      this.removeAttribute('closed');
+      this.removeAttribute('closed')
     }
 
     return html`
@@ -172,13 +172,12 @@ export class MyElement extends LitElement {
                   `}
             `,
     )}
-
         </div>
 
         <div class="toggle-button">
           <button @click=${this.toggleSidebar}>></button>
         </div>
       </div>
-    `;
+    `
   }
 }

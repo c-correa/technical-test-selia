@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+
+defineOptions({
+  name: 'HomePage',
+})
 </script>
 
 <template>
@@ -13,7 +17,6 @@ import { RouterLink } from 'vue-router'
 </template>
 
 <style scoped>
-/* Contenedor principal */
 .container {
   display: flex;
   justify-content: center;

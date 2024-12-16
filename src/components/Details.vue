@@ -1,16 +1,11 @@
-<template>
-  <div class="container">
-    <section class="content">
-      <p>{{ message }}</p>
-      <RouterLink class="link-router" to="/">Inicio</RouterLink>
-      <button class="link" @click="redirectRoute">Ir al variante {{ nextVariant }}</button>
-    </section>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 import { computed } from 'vue'
+
+defineOptions({
+  name: 'DetailsPage', // Cambié el nombre del componente aquí
+})
+
 defineProps({
   message: String,
 })
@@ -29,6 +24,16 @@ const redirectRoute = () => {
   router.push(`/variant-${nextVariant.value}`)
 }
 </script>
+
+<template>
+  <div class="container">
+    <section class="content">
+      <p>{{ message }}</p>
+      <RouterLink class="link-router" to="/">Inicio</RouterLink>
+      <button class="link" @click="redirectRoute">Ir al variante {{ nextVariant }}</button>
+    </section>
+  </div>
+</template>
 
 <style scoped>
 .container {

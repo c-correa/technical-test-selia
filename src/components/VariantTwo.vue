@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import './lit-components/sidebar'
 import { icons } from '@/utils/constant'
 import { useRoute } from 'vue-router'

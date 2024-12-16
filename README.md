@@ -90,29 +90,10 @@ src/
 
 Puedes explorar este proyecto directamente en CodeSandbox mediante el siguiente enlace: [Abrir en CodeSandbox](https://codesandbox.io/p/github/c-correa/technical-test-selia/main?workspaceId=ws_RLNxE9f6efNkeDo4hXDzNz)
 
-## Cómo Contribuir
-
-Si deseas contribuir a este proyecto:
-
-1. Haz un fork del repositorio.
-2. Crea una rama con tu funcionalidad o corrección:
-
-   ```sh
-   git checkout -b feature/nueva-funcionalidad
-   ```
-
-3. Realiza tus cambios y haz un commit:
-
-   ```sh
-   git commit -m "Añadida nueva funcionalidad"
-   ```
-
-4. Envía tus cambios a tu fork y abre un Pull Request hacia este repositorio.
-
 ## Contacto
 
 Para preguntas o sugerencias, por favor, contacta conmigo a través de mi correo o por los canales definidos.
 
----
+## <19correa99@gmail.com>
 
 ¡Gracias por utilizar este proyecto como base para tu desarrollo! 🚀
