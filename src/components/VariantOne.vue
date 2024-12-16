@@ -6,6 +6,7 @@
       :close-sidebar="closeSidebar"
       :toggle-sidebar="toggleSidebar"
       :close-sidebar-function="closeSidebarFunction"
+      :projectInfo="projectInfo"
     >
     </selia-sidebar>
     <div class="children">
@@ -20,6 +21,9 @@ import { useRoute } from 'vue-router'
 import './lit-components/sidebar'
 import { icons } from '@/utils/constant'
 import Details from './Details.vue'
+import { version, name } from '../../package.json'
+
+const projectInfo = `${name.toUpperCase()} V${version}`
 
 defineProps({
   closeSidebar: Boolean,

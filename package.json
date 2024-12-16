@@ -1,6 +1,6 @@
 {
-  "name": "technical-test",
-  "version": "0.0.0",
+  "name": "selia",
+  "version": "0.0.1",
   "private": true,
   "type": "module",
   "scripts": {

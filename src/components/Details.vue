@@ -26,7 +26,7 @@ const redirectRoute = () => {
 </script>
 
 <template>
-  <div class="container">
+  <div class="container content-variant">
     <section class="content">
       <p>{{ message }}</p>
       <RouterLink class="link-router" to="/">Inicio</RouterLink>
