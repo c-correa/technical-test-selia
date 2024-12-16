@@ -14,7 +14,7 @@ Este repositorio contiene un proyecto basado en Vue 3 con Vite, diseñado para s
    ```sh
    git clone https://github.com/c-correa/technical-test-selia.git
    cd technical-test-selia
-   codesanbox: https://codesandbox.io/p/github/c-correa/technical-test-selia/main?workspaceId=ws_RLNxE9f6efNkeDo4hXDzNz
+   codesanbox: https://codesandbox.io/p/github/c-correa/technical-test-selia/main
    ```
 
 2. Instala las dependencias necesarias:
